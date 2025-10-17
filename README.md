@@ -2,7 +2,6 @@
 
 > Autonomous investigation of false negatives (CFNs) in email security detection systems
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Bash](https://img.shields.io/badge/bash-3.2+-green.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey.svg)
 
@@ -200,10 +199,6 @@ See the `examples/` directory for:
 ## Contributing
 
 Contributions welcome! Please read the architecture documentation first to understand the intelligence boundary principle.
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details
 
 ## Authors
 
