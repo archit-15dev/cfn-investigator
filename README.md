@@ -141,6 +141,8 @@ echo "   Or: /cfn-investigate <message-id> (in Claude Code)"
 
 ## Quick Start
 
+**💡 Pro Tip:** Run `/cfn-investigate` from your `$SOURCE` directory (e.g., `~/source`) for maximum power! Claude Code will have access to Abnormal's codebase context (detection models, rules, heuristics, feature extractors), making investigations significantly more accurate and enabling it to suggest precise code changes.
+
 ### Analyze a single message
 
 ```bash
