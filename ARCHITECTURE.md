@@ -3,7 +3,7 @@
 
 **Document Version**: 1.0
 **Last Updated**: 2025-01-17
-**Author**: Archit Sharma
+**Author**: Archit Singh
 **Purpose**: Complete architectural documentation for the msg tool (data fetcher) and cfn-investigate workflow (intelligence layer)
 
 ---

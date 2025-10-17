@@ -202,7 +202,7 @@ Contributions welcome! Please read the architecture documentation first to under
 
 ## Authors
 
-- **Archit Sharma** - Initial work
+- **Archit Singh** - Initial work
 
 ## Acknowledgments
 
