@@ -12,6 +12,18 @@ CFN Investigator helps you find out why attack emails weren't caught by your sec
 - `CLAUDE.md` - Reference documentation for AI agents
 - `README.md` - This file
 
+## Documentation
+
+**📖 [Technical Documentation](TECHNICAL_DOCUMENTATION.md)** - Complete guide (30,000 words)
+- Quick start, core concepts, essential commands
+- Phase-by-phase workflow walkthrough
+- Troubleshooting and performance tips
+
+**✍️ [Blog Post](BLOG_POST.md)** - Architecture deep dive (8,000 words)
+- How we built reliable AI automation
+- Deterministic tools + smart workflows pattern
+- Real metrics: 67x speedup, 99% success rate
+
 ## Installation
 
 ```bash
