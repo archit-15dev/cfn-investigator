@@ -19,6 +19,20 @@ CFN Investigator helps you find out why attack emails weren't caught by your sec
 git clone https://github.com/archit-15dev/cfn-investigator.git
 cd cfn-investigator
 
+# 0. Check dependencies
+echo "Checking dependencies..."
+command -v jq >/dev/null 2>&1 || {
+  echo "❌ jq required but not installed"
+  echo "   Install: brew install jq (macOS) or apt-get install jq (Linux)"
+  exit 1
+}
+command -v curl >/dev/null 2>&1 || {
+  echo "❌ curl required but not installed"
+  exit 1
+}
+echo "✅ Dependencies OK (jq, curl)"
+echo ""
+
 # 1. Install msg tool
 mkdir -p ~/.local/bin
 cp msg ~/.local/bin/msg
@@ -26,14 +40,29 @@ chmod +x ~/.local/bin/msg
 
 # Add to PATH if not already there
 if ! echo $PATH | grep -q "$HOME/.local/bin"; then
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  # Detect shell config file
+  if [ -n "$ZSH_VERSION" ]; then
+    RC_FILE="$HOME/.zshrc"
+  elif [ -n "$BASH_VERSION" ]; then
+    if [ "$(uname)" = "Darwin" ]; then
+      RC_FILE="$HOME/.bash_profile"
+    else
+      RC_FILE="$HOME/.bashrc"
+    fi
+  else
+    RC_FILE="$HOME/.profile"
+  fi
+
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$RC_FILE"
   export PATH="$HOME/.local/bin:$PATH"
-  echo "✅ Added ~/.local/bin to PATH"
+  echo "✅ Added ~/.local/bin to PATH (updated $RC_FILE)"
+  echo "   ⚠️  Restart terminal or run: source $RC_FILE"
 fi
 
 # 2. Install Claude Code workflow
-# Uses SOURCE env var, falls back to ~/source if not set
+# Uses SOURCE env var (should already be set in your org)
 SOURCE="${SOURCE:-${HOME}/source}"
+echo "Using SOURCE directory: ${SOURCE}"
 mkdir -p "${SOURCE}/.claude/commands"
 cp cfn-investigate-workflow "${SOURCE}/.claude/commands/cfn-investigate.md"
 echo "✅ Installed /cfn-investigate command in ${SOURCE}/.claude/commands"
@@ -56,8 +85,15 @@ else
 fi
 
 # 4. Verify installation
-msg --help > /dev/null 2>&1 && echo "✅ msg tool installed" || echo "❌ msg tool failed"
-[ -f "${SOURCE}/.claude/commands/cfn-investigate.md" ] && echo "✅ /cfn-investigate command installed" || echo "❌ Workflow not found"
+echo ""
+echo "Verifying installation..."
+msg --help > /dev/null 2>&1 && echo "✅ msg tool" || echo "❌ msg tool (restart terminal)"
+[ -f "${SOURCE}/.claude/commands/cfn-investigate.md" ] && echo "✅ /cfn-investigate workflow" || echo "❌ Workflow missing"
+[ -f ~/.claude/CLAUDE.md ] && echo "✅ CLAUDE.md" || echo "❌ CLAUDE.md missing"
+echo ""
+echo "🎉 Installation complete!"
+echo "   Try: msg --help"
+echo "   Or: /cfn-investigate <message-id> (in Claude Code)"
 ```
 
 ## Quick Start
