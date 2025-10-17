@@ -1,0 +1,36 @@
+# CFN Investigator - Git Ignore
+
+# Cache files
+/tmp/
+*.json
+scorer_response.json
+cache/
+
+# Output directories
+cfn_batch/
+msg_tool_analysis/
+output/
+
+# Log files
+*.log
+errors.log
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
