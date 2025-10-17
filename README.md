@@ -50,6 +50,13 @@ Each example includes complete investigation report with root cause analysis, ev
 
 ## Installation
 
+**What the installation script does:**
+1. Clones the repo and navigates into it
+2. Checks for `jq` dependency - exits if not installed
+3. Installs the `msg` tool to `~/.local/bin` and adds it to PATH
+4. Installs Claude Code workflow to `${SOURCE}/.claude/commands/`
+5. Creates/updates `~/.claude/CLAUDE.md` (with backup if it exists)
+
 ```bash
 # Clone the repository
 git clone https://github.com/archit-15dev/cfn-investigator.git
