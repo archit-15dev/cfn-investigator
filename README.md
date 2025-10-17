@@ -14,37 +14,50 @@ CFN Investigator helps you find out why attack emails weren't caught by your sec
 
 ## Installation
 
-### 1. Install the msg tool
-
 ```bash
-# Copy to your PATH
+# Clone the repository
+git clone https://github.com/archit-15dev/cfn-investigator.git
+cd cfn-investigator
+
+# 1. Install msg tool
+mkdir -p ~/.local/bin
 cp msg ~/.local/bin/msg
 chmod +x ~/.local/bin/msg
 
-# Or add to PATH temporarily
-export PATH="$PATH:/path/to/cfn-investigator"
-```
-
-### 2. Install the investigation workflow (for Claude Code)
-
-```bash
-# Copy to Claude Code commands directory
-mkdir -p ~/.claude/commands
-cp cfn-investigate-workflow ~/.claude/commands/cfn-investigate.md
-
-# Copy documentation for AI agents (creates backup if file exists)
-if [ -f ~/.claude/CLAUDE.md ]; then
-  cp ~/.claude/CLAUDE.md ~/.claude/CLAUDE.md.backup
-  echo "Backup created: ~/.claude/CLAUDE.md.backup"
+# Add to PATH if not already there
+if ! echo $PATH | grep -q "$HOME/.local/bin"; then
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  export PATH="$HOME/.local/bin:$PATH"
+  echo "✅ Added ~/.local/bin to PATH"
 fi
-cat CLAUDE.md >> ~/.claude/CLAUDE.md
-echo "CFN Investigator docs added to ~/.claude/CLAUDE.md"
-```
 
-### 3. Verify installation
+# 2. Install Claude Code workflow
+# Uses SOURCE env var, falls back to ~/source if not set
+SOURCE="${SOURCE:-${HOME}/source}"
+mkdir -p "${SOURCE}/.claude/commands"
+cp cfn-investigate-workflow "${SOURCE}/.claude/commands/cfn-investigate.md"
+echo "✅ Installed /cfn-investigate command in ${SOURCE}/.claude/commands"
 
-```bash
-msg --help
+# 3. Install CLAUDE.md (with backup protection)
+if [ -f ~/.claude/CLAUDE.md ]; then
+  if grep -q "### msg (Message Scorer Analysis)" ~/.claude/CLAUDE.md; then
+    echo "⚠️  CFN Investigator docs already installed in CLAUDE.md"
+  else
+    cp ~/.claude/CLAUDE.md ~/.claude/CLAUDE.md.backup
+    echo "" >> ~/.claude/CLAUDE.md
+    echo "---" >> ~/.claude/CLAUDE.md
+    echo "" >> ~/.claude/CLAUDE.md
+    cat CLAUDE.md >> ~/.claude/CLAUDE.md
+    echo "✅ Appended CFN docs to CLAUDE.md (backup: CLAUDE.md.backup)"
+  fi
+else
+  cp CLAUDE.md ~/.claude/CLAUDE.md
+  echo "✅ Created CLAUDE.md"
+fi
+
+# 4. Verify installation
+msg --help > /dev/null 2>&1 && echo "✅ msg tool installed" || echo "❌ msg tool failed"
+[ -f "${SOURCE}/.claude/commands/cfn-investigate.md" ] && echo "✅ /cfn-investigate command installed" || echo "❌ Workflow not found"
 ```
 
 ## Quick Start
