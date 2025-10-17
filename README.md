@@ -26,7 +26,7 @@ CFN Investigator helps you find out why attack emails weren't caught by your sec
 
 ## Examples
 
-Real-world CFN investigations demonstrating the tool's capabilities:
+Real-world CFN investigations demonstrating the tool's capabilities (from Weekly Detection CFN Digest for 2025-10-13):
 
 **🔍 [Example 1: Financial Fraud/BEC](examples/4283786237931339625/)**
 - **Attack Vector**: Business email compromise with financial urgency
