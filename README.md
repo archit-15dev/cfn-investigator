@@ -24,6 +24,30 @@ CFN Investigator helps you find out why attack emails weren't caught by your sec
 - Deterministic tools + smart workflows pattern
 - Real metrics: 67x speedup, 99% success rate
 
+## Examples
+
+Real-world CFN investigations demonstrating the tool's capabilities:
+
+**🔍 [Example 1: Financial Fraud/BEC](examples/4283786237931339625/)**
+- **Attack Vector**: Business email compromise with financial urgency
+- **Gap Category**: Category 4 - Threshold Too Strict
+- **Key Findings**: Young domain (201 days), 92.6% junk rate, 21 heuristics triggered
+- View: [Investigation Report](examples/4283786237931339625/cfn_investigation_report.md)
+
+**🔍 [Example 2: Crypto Phishing](examples/1342608625997540702/)**
+- **Attack Vector**: Brand impersonation (crypto.com) with reply-to mismatch
+- **Gap Category**: Category 4 - Threshold Too Strict
+- **Key Findings**: Young reply-to domain (139 days, 22% junk rate), 14 critical signals, recurring pattern (CFN-317391)
+- View: [Investigation Report](examples/1342608625997540702/cfn_investigation_report.md)
+
+**🔍 [Example 3: Credential Phishing](examples/6085996778321132573/)**
+- **Attack Vector**: Document sharing lure with multi-redirect chain
+- **Gap Category**: Category 3+4 Hybrid - Rule Gap + Threshold
+- **Key Findings**: Never-seen sender from domain with 15,385 sure attacks, 19 heuristics triggered
+- View: [Investigation Report](examples/6085996778321132573/cfn_investigation_report.md)
+
+Each example includes complete investigation report with root cause analysis, evidence, recommended fixes, test plans, and implementation timelines.
+
 ## Installation
 
 ```bash
@@ -192,30 +216,6 @@ Creates:
 - Summary of systematic patterns
 - Prioritized list of gaps by impact
 - Representative examples for each pattern
-
-## Examples
-
-Real-world CFN investigations demonstrating the tool's capabilities:
-
-**🔍 [Example 1: Financial Fraud/BEC](examples/4283786237931339625/)**
-- **Attack Vector**: Business email compromise with financial urgency
-- **Gap Category**: Category 4 - Threshold Too Strict
-- **Key Findings**: Young domain (201 days), 92.6% junk rate, 21 heuristics triggered
-- View: [Investigation Report](examples/4283786237931339625/cfn_investigation_report.md)
-
-**🔍 [Example 2: Crypto Phishing](examples/1342608625997540702/)**
-- **Attack Vector**: Brand impersonation (crypto.com) with reply-to mismatch
-- **Gap Category**: Category 4 - Threshold Too Strict
-- **Key Findings**: Young reply-to domain (139 days, 22% junk rate), 14 critical signals, recurring pattern (CFN-317391)
-- View: [Investigation Report](examples/1342608625997540702/cfn_investigation_report.md)
-
-**🔍 [Example 3: Credential Phishing](examples/6085996778321132573/)**
-- **Attack Vector**: Document sharing lure with multi-redirect chain
-- **Gap Category**: Category 3+4 Hybrid - Rule Gap + Threshold
-- **Key Findings**: Never-seen sender from domain with 15,385 sure attacks, 19 heuristics triggered
-- View: [Investigation Report](examples/6085996778321132573/cfn_investigation_report.md)
-
-Each example includes complete investigation report with root cause analysis, evidence, recommended fixes, test plans, and implementation timelines.
 
 ## Author
 
